@@ -63,7 +63,6 @@ static NSString *kLLARingSpinnerAnimationKey = @"llaringspinnerview.rotation";
     animation.fromValue = @(0.0f);
     animation.toValue = @(2 * M_PI);
     animation.repeatCount = INFINITY;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 
     [self.progressLayer addAnimation:animation forKey:kLLARingSpinnerAnimationKey];
     self.isAnimating = true;
