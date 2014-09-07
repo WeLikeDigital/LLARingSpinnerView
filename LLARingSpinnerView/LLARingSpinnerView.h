@@ -13,7 +13,26 @@
 @property (nonatomic, readonly) BOOL isAnimating;
 @property (nonatomic) CGFloat lineWidth;
 
-- (void)startAnimating;
-- (void)stopAnimating;
++ (instancetype) addRingSpinnerToView:(UIView *) view
+                                color:(UIColor *) color;
+
++ (instancetype) addRingSpinnerToView:(UIView *) view
+                               center:(CGPoint) center
+                                color:(UIColor *) color;
+
++ (instancetype) addRingSpinnerToView:(UIView *) view
+                               size:(CGFloat) size
+                                color:(UIColor *) color;
+
++ (instancetype) addRingSpinnerToView:(UIView *) view
+                                 size:(CGFloat) size
+                               center:(CGPoint) center
+                                color:(UIColor *) color;
+
++ (BOOL) hideRingSpinnerForView:(UIView *) view;
+
+- (void) startAnimating;
+- (void) stopAnimating;
+- (void) hide;
 
 @end
