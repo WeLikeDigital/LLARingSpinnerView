@@ -158,7 +158,7 @@ static CGFloat kOverlaySpinnerBackgroundDefaultSize = 77;
 +(LLARingSpinnerBackgroundView *) overlayRingSpinnerForView:(UIView *)view {
     NSEnumerator *subviewsEnum = [view.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass:self]) {
+        if ([subview isKindOfClass:[LLARingSpinnerBackgroundView class]]) {
             return (LLARingSpinnerBackgroundView *)subview;
         }
     }
