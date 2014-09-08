@@ -24,6 +24,7 @@
         self.spinner = [LLARingSpinnerView addRingSpinnerToView:self
                                                           color:[UIColor blueColor]];
         self.isRefreshAnimating = NO;
+        self.spinner.hidden = YES;
     }
     
     return self;
@@ -39,32 +40,15 @@
     
     // If we're refreshing and the animation is not playing, then play the animation
     if (self.isRefreshing && !self.isRefreshAnimating) {
-        [self animateRefreshView];
+        [self.spinner startAnimating];
+        self.isRefreshAnimating = YES;
+        self.spinner.hidden = NO;
     }
-    else if (!(self.isRefreshing || self.isRefreshAnimating)) {
+    else if (!self.isRefreshing) {
         [self.spinner stopAnimating];
+        self.isRefreshAnimating = NO;
+        self.spinner.hidden = YES;
     }
-}
-
-- (void)animateRefreshView
-{
-    // Flag that we are animating
-    self.isRefreshAnimating = YES;
-    
-    [UIView animateWithDuration:0.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         [self.spinner startAnimating];
-                     }
-                     completion:^(BOOL finished) {
-                         if (self.isRefreshing) {
-                         }
-                         else{
-                             [self.spinner stopAnimating];
-                             self.isRefreshAnimating = NO;
-                         }
-                     }];
 }
 
 @end
