@@ -41,6 +41,9 @@
     if (self.isRefreshing && !self.isRefreshAnimating) {
         [self animateRefreshView];
     }
+    else if (!(self.isRefreshing || self.isRefreshAnimating)) {
+        [self.spinner stopAnimating];
+    }
 }
 
 - (void)animateRefreshView
@@ -59,6 +62,7 @@
                          }
                          else{
                              [self.spinner stopAnimating];
+                             self.isRefreshAnimating = NO;
                          }
                      }];
 }
