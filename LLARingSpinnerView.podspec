@@ -12,6 +12,5 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit', 'CoreGraphics'
   s.requires_arc = true
 
-  s.source_files = 'LLARingSpinnerView'
-  s.source_files = 'LLARingRefreshControl'
+  s.source_files = 'LLARing/*.{h,m}'
 end
