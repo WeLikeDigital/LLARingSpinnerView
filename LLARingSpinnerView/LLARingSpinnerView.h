@@ -13,6 +13,14 @@
 @property (nonatomic, readonly) BOOL isAnimating;
 @property (nonatomic) CGFloat lineWidth;
 
+
+- (instancetype) initWithFrame:(CGRect) frame
+                          size:(CGFloat) size
+                         color:(UIColor *) color;
+
+- (instancetype) initWithFrame:(CGRect) frame
+                         color:(UIColor *) color;
+
 - (instancetype) initWithColor:(UIColor *) color;
 
 + (instancetype) addRingSpinnerToView:(UIView *) view

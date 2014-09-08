@@ -37,17 +37,27 @@ static CGFloat kSpinnerDefaultSize = 20;
     return self;
 }
 
-- (instancetype) initWithSize:(CGFloat) size
-                        color:(UIColor *) color {
-    self = [self initWithFrame:CGRectZero];
+- (instancetype) initWithFrame:(CGRect) frame
+                          size:(CGFloat) size
+                         color:(UIColor *) color {
+    self = [self initWithFrame:frame];
     self.tintColor = color;
     self.bounds = CGRectMake(0, 0, size, size);
     return self;
 }
 
+- (instancetype) initWithFrame:(CGRect) frame
+                         color:(UIColor *) color {
+    self = [self initWithFrame:frame
+                          size:kSpinnerDefaultSize
+                         color:color];
+    return self;
+}
+
 - (instancetype) initWithColor:(UIColor *) color {
-    self = [self initWithSize:kSpinnerDefaultSize
-                        color:color];
+    self = [self initWithFrame:CGRectZero
+                          size:kSpinnerDefaultSize
+                         color:color];
     return self;
 }
 
@@ -57,8 +67,9 @@ static CGFloat kSpinnerDefaultSize = 20;
 
 +(instancetype)addRingSpinnerToView:(UIView *)view
                               color:(UIColor *) color {
-    LLARingSpinnerView *spinner = [[self alloc] initWithSize:kSpinnerDefaultSize
-                                                       color:color];
+    LLARingSpinnerView *spinner = [[self alloc] initWithFrame:CGRectZero
+                                                         size:kSpinnerDefaultSize
+                                                        color:color];
     spinner.center = CGPointMake(CGRectGetMidX(view.bounds), CGRectGetMidY(view.bounds));
     [view addSubview:spinner];
     [spinner startAnimating];
@@ -68,8 +79,9 @@ static CGFloat kSpinnerDefaultSize = 20;
 +(instancetype)addRingSpinnerToView:(UIView *)view
                              center:(CGPoint)center
                               color:(UIColor *)color {
-    LLARingSpinnerView *spinner = [[self alloc] initWithSize:kSpinnerDefaultSize
-                                                       color:color];
+    LLARingSpinnerView *spinner = [[self alloc] initWithFrame:CGRectZero
+                                                         size:kSpinnerDefaultSize
+                                                        color:color];
     spinner.center = center;
     [view addSubview:spinner];
     [spinner startAnimating];
@@ -79,8 +91,9 @@ static CGFloat kSpinnerDefaultSize = 20;
 +(instancetype)addRingSpinnerToView:(UIView *)view
                                size:(CGFloat)size
                               color:(UIColor *)color {
-    LLARingSpinnerView *spinner = [[self alloc] initWithSize:size
-                                                       color:color];
+    LLARingSpinnerView *spinner = [[self alloc] initWithFrame:CGRectZero
+                                                         size:size
+                                                        color:color];
     spinner.center = CGPointMake(CGRectGetMidX(view.bounds), CGRectGetMidY(view.bounds));
     [view addSubview:spinner];
     [spinner startAnimating];
@@ -91,8 +104,9 @@ static CGFloat kSpinnerDefaultSize = 20;
                                size:(CGFloat)size
                              center:(CGPoint)center
                               color:(UIColor *)color {
-    LLARingSpinnerView *spinner = [[self alloc] initWithSize:size
-                                                       color:color];
+    LLARingSpinnerView *spinner = [[self alloc] initWithFrame:CGRectZero
+                                                         size:size
+                                                        color:color];
     spinner.center = center;
     [view addSubview:spinner];
     [spinner startAnimating];
