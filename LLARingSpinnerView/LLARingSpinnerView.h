@@ -39,10 +39,17 @@
                                center:(CGPoint) center
                                 color:(UIColor *) color;
 
++(void) addOverlayRingSpinnerToView:(UIView *) view;
++(void) hideOverlayRingSpinnerFromView:(UIView *) view;
+
 + (BOOL) hideRingSpinnerForView:(UIView *) view;
 
 - (void) startAnimating;
 - (void) stopAnimating;
 - (void) hide;
+
+@end
+
+@interface LLARingSpinnerBackgroundView : UIView
 
 @end

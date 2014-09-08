@@ -134,6 +134,35 @@ static CGFloat kSpinnerDefaultSize = 20;
     return nil;
 }
 
++(void) addOverlayRingSpinnerToView:(UIView *) view {
+    LLARingSpinnerBackgroundView *background = [[LLARingSpinnerBackgroundView alloc] initWithFrame:CGRectMake(CGRectGetMidX(view.bounds), CGRectGetMidY(view.bounds), 77, 77)];
+    background.opaque = NO;
+    
+    [LLARingSpinnerView addRingSpinnerToView:background
+                                        size:40 color:[UIColor grayColor]];
+    [view addSubview:background];
+}
+
++(void)hideOverlayRingSpinnerFromView:(UIView *)view {
+    LLARingSpinnerBackgroundView *overlayRingSpinner = [self overlayRingSpinnerForView:view];
+    
+    if (overlayRingSpinner != nil) {
+        overlayRingSpinner.alpha = 0;
+        [overlayRingSpinner removeFromSuperview];
+    }
+}
+
++(LLARingSpinnerBackgroundView *) overlayRingSpinnerForView:(UIView *)view {
+    NSEnumerator *subviewsEnum = [view.subviews reverseObjectEnumerator];
+    for (UIView *subview in subviewsEnum) {
+        if ([subview isKindOfClass:self]) {
+            return (LLARingSpinnerBackgroundView *)subview;
+        }
+    }
+    return nil;
+}
+
+
 - (void) hide {
     self.alpha = 0;
     [self removeFromSuperview];
@@ -209,6 +238,31 @@ static CGFloat kSpinnerDefaultSize = 20;
 - (void)setLineWidth:(CGFloat)lineWidth {
     self.progressLayer.lineWidth = lineWidth;
     [self updatePath];
+}
+
+@end
+
+@implementation LLARingSpinnerBackgroundView
+
+-(void)drawRect:(CGRect)rect {
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIGraphicsPushContext(context);
+    
+    CGContextSetGrayFillColor(context, 0.0f, 0.8);
+    
+    CGRect boxRect = self.bounds;
+    float radius = 10;
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, CGRectGetMinX(boxRect) + radius, CGRectGetMinY(boxRect));
+    CGContextAddArc(context, CGRectGetMaxX(boxRect) - radius, CGRectGetMinY(boxRect) + radius, radius, 3 * (float)M_PI / 2, 0, 0);
+    CGContextAddArc(context, CGRectGetMaxX(boxRect) - radius, CGRectGetMaxY(boxRect) - radius, radius, 0, (float)M_PI / 2, 0);
+    CGContextAddArc(context, CGRectGetMinX(boxRect) + radius, CGRectGetMaxY(boxRect) - radius, radius, (float)M_PI / 2, (float)M_PI, 0);
+    CGContextAddArc(context, CGRectGetMinX(boxRect) + radius, CGRectGetMinY(boxRect) + radius, radius, (float)M_PI, 3 * (float)M_PI / 2, 0);
+    CGContextClosePath(context);
+    CGContextFillPath(context);
+    
+    UIGraphicsPopContext();
 }
 
 @end
