@@ -10,6 +10,8 @@
 
 static NSString *kLLARingSpinnerAnimationKey = @"llaringspinnerview.rotation";
 static CGFloat kSpinnerDefaultSize = 20;
+static CGFloat kOverlaySpinnerDefaultSize = 40;
+static CGFloat kOverlaySpinnerBackgroundDefaultSize = 77;
 
 @interface LLARingSpinnerView ()
 
@@ -127,7 +129,7 @@ static CGFloat kSpinnerDefaultSize = 20;
 +(instancetype)ringSpinnerForView:(UIView *) view {
     NSEnumerator *subviewsEnum = [view.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass:self]) {
+        if ([subview isKindOfClass:[LLARingSpinnerBackgroundView class]]) {
             return (LLARingSpinnerView *)subview;
         }
     }
@@ -135,11 +137,12 @@ static CGFloat kSpinnerDefaultSize = 20;
 }
 
 +(void) addOverlayRingSpinnerToView:(UIView *) view {
-    LLARingSpinnerBackgroundView *background = [[LLARingSpinnerBackgroundView alloc] initWithFrame:CGRectMake(CGRectGetMidX(view.bounds), CGRectGetMidY(view.bounds), 77, 77)];
+    LLARingSpinnerBackgroundView *background = [[LLARingSpinnerBackgroundView alloc] initWithFrame:CGRectMake(CGRectGetMidX(view.bounds) - kOverlaySpinnerBackgroundDefaultSize/2, CGRectGetMidY(view.bounds) - kOverlaySpinnerBackgroundDefaultSize/2, kOverlaySpinnerBackgroundDefaultSize, kOverlaySpinnerBackgroundDefaultSize)];
     background.opaque = NO;
     
     [LLARingSpinnerView addRingSpinnerToView:background
-                                        size:40 color:[UIColor grayColor]];
+                                        size:kOverlaySpinnerDefaultSize
+                                       color:[UIColor grayColor]];
     [view addSubview:background];
 }
 
