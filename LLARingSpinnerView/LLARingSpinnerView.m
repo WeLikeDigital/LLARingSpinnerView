@@ -103,6 +103,7 @@ static CGFloat kSpinnerDefaultSize = 20;
     BOOL result = NO;
     LLARingSpinnerView *spinner = [self ringSpinnerForView:view];
     if (spinner != nil) {
+        spinner.alpha = 0;
         [spinner removeFromSuperview];
         result = YES;
     }
@@ -120,6 +121,7 @@ static CGFloat kSpinnerDefaultSize = 20;
 }
 
 - (void) hide {
+    self.alpha = 0;
     [self removeFromSuperview];
 }
 
