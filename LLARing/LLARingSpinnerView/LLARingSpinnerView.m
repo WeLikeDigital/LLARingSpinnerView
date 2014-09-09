@@ -65,6 +65,7 @@ static CGFloat kOverlaySpinnerBackgroundDefaultSize = 77;
 
 - (void)initialize {
     [self.layer addSublayer:self.progressLayer];
+    self.endAngle = 3 * M_PI_2;
 }
 
 +(instancetype)addRingSpinnerToView:(UIView *)view
@@ -213,7 +214,7 @@ static CGFloat kOverlaySpinnerBackgroundDefaultSize = 77;
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     CGFloat radius = MIN(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2) - self.progressLayer.lineWidth / 2;
     CGFloat startAngle = 0;
-    CGFloat endAngle = (CGFloat)(3 * M_PI_2);
+    CGFloat endAngle = self.endAngle;
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
     self.progressLayer.path = path.CGPath;
 }

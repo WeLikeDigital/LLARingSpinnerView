@@ -23,8 +23,8 @@
         self.tintColor = [UIColor clearColor];
         self.spinner = [LLARingSpinnerView addRingSpinnerToView:self
                                                           color:[UIColor blueColor]];
+        self.spinner.endAngle = 0;
         self.isRefreshAnimating = NO;
-        self.spinner.hidden = YES;
     }
     
     return self;
@@ -38,16 +38,19 @@
     // Set the encompassing view's frames
     refreshBounds.size.height = pullDistance;
     
+    if (!self.isRefreshAnimating) {
+        self.spinner.endAngle = MIN(pullDistance/100 * 3 * M_PI_2 ,3 * M_PI_2);
+        [self.spinner setNeedsLayout];
+    }
+    
     // If we're refreshing and the animation is not playing, then play the animation
     if (self.isRefreshing && !self.isRefreshAnimating) {
         [self.spinner startAnimating];
         self.isRefreshAnimating = YES;
-        self.spinner.hidden = NO;
     }
     else if (!self.isRefreshing) {
         [self.spinner stopAnimating];
         self.isRefreshAnimating = NO;
-        self.spinner.hidden = YES;
     }
 }
 

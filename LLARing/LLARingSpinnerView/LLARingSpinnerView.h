@@ -48,6 +48,8 @@
 - (void) stopAnimating;
 - (void) hide;
 
+@property CGFloat endAngle;
+
 @end
 
 @interface LLARingSpinnerBackgroundView : UIView
