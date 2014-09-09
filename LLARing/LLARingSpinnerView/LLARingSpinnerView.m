@@ -24,6 +24,7 @@ static CGFloat kOverlaySpinnerBackgroundDefaultSize = 77;
 
 @synthesize progressLayer = _progressLayer;
 @synthesize isAnimating = _isAnimating;
+@synthesize endAngle = _endAngle;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -242,6 +243,15 @@ static CGFloat kOverlaySpinnerBackgroundDefaultSize = 77;
 - (void)setLineWidth:(CGFloat)lineWidth {
     self.progressLayer.lineWidth = lineWidth;
     [self updatePath];
+}
+
+-(void) setEndAngle:(CGFloat)endAngle {
+    _endAngle = endAngle;
+    [self setNeedsLayout];
+}
+
+-(CGFloat) endAngle {
+    return _endAngle;
 }
 
 @end

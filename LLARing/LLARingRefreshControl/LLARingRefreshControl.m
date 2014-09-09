@@ -39,12 +39,12 @@
     refreshBounds.size.height = pullDistance;
     
     if (!self.isRefreshAnimating) {
-        self.spinner.endAngle = MIN(pullDistance/100 * 3 * M_PI_2 ,3 * M_PI_2);
-        [self.spinner setNeedsLayout];
+        self.spinner.endAngle = MIN(pullDistance/60 * 3 * M_PI_2 ,3 * M_PI_2);
     }
     
     // If we're refreshing and the animation is not playing, then play the animation
     if (self.isRefreshing && !self.isRefreshAnimating) {
+        self.spinner.endAngle = 3 * M_PI_2;
         [self.spinner startAnimating];
         self.isRefreshAnimating = YES;
     }
