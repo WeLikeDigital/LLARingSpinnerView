@@ -9,7 +9,7 @@
 #import "LLARingRefreshControl.h"
 #import "LLARingSpinnerView.h"
 
-static CGFloat const kRefreshControlEndAngle = 7 * M_PI / 8;
+static CGFloat const kRefreshControlEndAngle = 11 * M_PI / 6;
 static CGFloat const kPullDistanceDivider = 60;
 
 @interface LLARingRefreshControl()

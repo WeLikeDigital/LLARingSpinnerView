@@ -12,7 +12,7 @@ static NSString *kLLARingSpinnerAnimationKey = @"llaringspinnerview.rotation";
 static CGFloat kSpinnerDefaultSize = 20;
 static CGFloat kOverlaySpinnerDefaultSize = 40;
 static CGFloat kOverlaySpinnerBackgroundDefaultSize = 77;
-static CGFloat const kSpinnerEndAngle = 7 * M_PI / 8;
+static CGFloat const kSpinnerEndAngle = 11 * M_PI / 6;
 
 @interface LLARingSpinnerView ()
 
