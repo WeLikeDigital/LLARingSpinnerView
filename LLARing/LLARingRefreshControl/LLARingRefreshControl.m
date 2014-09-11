@@ -9,6 +9,9 @@
 #import "LLARingRefreshControl.h"
 #import "LLARingSpinnerView.h"
 
+static CGFloat const kRefreshControlEndAngle = 7 * M_PI / 8;
+static CGFloat const kPullDistanceDivider = 60;
+
 @interface LLARingRefreshControl()
 
 @property (nonatomic, strong) LLARingSpinnerView *spinner;
@@ -22,7 +25,7 @@
     if (self = [super init]) {
         self.tintColor = [UIColor clearColor];
         self.spinner = [LLARingSpinnerView addRingSpinnerToView:self
-                                                          color:[UIColor blueColor]];
+                                                          color:[UIColor colorWithRed:0.204 green:0.596 blue:0.856 alpha:1]];
         self.spinner.endAngle = 0;
         self.isRefreshAnimating = NO;
     }
@@ -39,12 +42,12 @@
     refreshBounds.size.height = pullDistance;
     
     if (!self.isRefreshAnimating) {
-        self.spinner.endAngle = MIN(pullDistance/60 * 3 * M_PI_2 ,3 * M_PI_2);
+        self.spinner.endAngle = MIN(pullDistance/kPullDistanceDivider * kRefreshControlEndAngle , kRefreshControlEndAngle);
     }
     
     // If we're refreshing and the animation is not playing, then play the animation
     if (self.isRefreshing && !self.isRefreshAnimating) {
-        self.spinner.endAngle = 3 * M_PI_2;
+        self.spinner.endAngle = kRefreshControlEndAngle;
         [self.spinner startAnimating];
         self.isRefreshAnimating = YES;
     }
