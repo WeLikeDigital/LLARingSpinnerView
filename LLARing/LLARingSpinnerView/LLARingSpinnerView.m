@@ -12,7 +12,7 @@ static NSString *kLLARingSpinnerAnimationKey = @"llaringspinnerview.rotation";
 static CGFloat kSpinnerDefaultSize = 20;
 static CGFloat kOverlaySpinnerDefaultSize = 40;
 static CGFloat kOverlaySpinnerBackgroundDefaultSize = 77;
-static CGFloat const kSpinnerEndAngle = 11 * M_PI / 6;
+static CGFloat const kSpinnerEndAngle = 4 * M_PI / 3;
 
 @interface LLARingSpinnerView ()
 
@@ -215,7 +215,7 @@ static CGFloat const kSpinnerEndAngle = 11 * M_PI / 6;
 - (void)updatePath {
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     CGFloat radius = MIN(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2) - self.progressLayer.lineWidth / 2;
-    CGFloat startAngle = 0;
+    CGFloat startAngle = 3 * M_PI_2;
     CGFloat endAngle = self.endAngle;
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
     self.progressLayer.path = path.CGPath;

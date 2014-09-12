@@ -9,8 +9,8 @@
 #import "LLARingRefreshControl.h"
 #import "LLARingSpinnerView.h"
 
-static CGFloat const kRefreshControlEndAngle = 11 * M_PI / 6;
-static CGFloat const kPullDistanceDivider = 60;
+static CGFloat const kRefreshControlEndAngle = 4 * M_PI / 3;
+static CGFloat const kPullDistanceDivider = 80;
 
 @interface LLARingRefreshControl()
 
@@ -42,7 +42,8 @@ static CGFloat const kPullDistanceDivider = 60;
     refreshBounds.size.height = pullDistance;
     
     if (!self.isRefreshAnimating) {
-        self.spinner.endAngle = MIN(pullDistance/kPullDistanceDivider * kRefreshControlEndAngle , kRefreshControlEndAngle);
+        CGFloat endAngle = MAX(pullDistance/kPullDistanceDivider * kRefreshControlEndAngle + 3 * M_PI_2, kRefreshControlEndAngle);
+        self.spinner.endAngle = endAngle < kRefreshControlEndAngle + 2 * M_PI ? endAngle : kRefreshControlEndAngle;
     }
     
     // If we're refreshing and the animation is not playing, then play the animation
