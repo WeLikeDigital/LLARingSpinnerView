@@ -132,7 +132,7 @@ static CGFloat const kSpinnerEndAngle = 4 * M_PI / 3;
 +(instancetype)ringSpinnerForView:(UIView *) view {
     NSEnumerator *subviewsEnum = [view.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass:[LLARingSpinnerBackgroundView class]]) {
+        if ([subview isKindOfClass:[LLARingSpinnerView class]]) {
             return (LLARingSpinnerView *)subview;
         }
     }
