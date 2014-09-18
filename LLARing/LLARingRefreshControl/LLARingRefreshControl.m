@@ -33,6 +33,11 @@ static CGFloat const kPullDistanceDivider = 80;
     return self;
 }
 
+-(void)beginRefreshing {
+    [super beginRefreshing];
+    [self.spinner startAnimating];
+}
+
 -(void)handleScroll {
     // Get the current size of the refresh controller
     CGRect refreshBounds = self.bounds;
