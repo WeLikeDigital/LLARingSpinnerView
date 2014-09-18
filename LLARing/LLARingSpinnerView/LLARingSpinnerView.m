@@ -188,8 +188,6 @@ static CGFloat const kSpinnerEndAngle = 4 * M_PI / 3;
 }
 
 - (void)startAnimating {
-    if (self.isAnimating)
-        return;
     
     CABasicAnimation *animation = [CABasicAnimation animation];
     animation.keyPath = @"transform.rotation";
