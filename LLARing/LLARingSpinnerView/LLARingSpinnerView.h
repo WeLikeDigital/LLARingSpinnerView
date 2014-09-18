@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class LLARingSpinnerBackgroundView;
+
 @interface LLARingSpinnerView : UIView
 
 @property (nonatomic, readonly) BOOL isAnimating;
@@ -39,7 +41,7 @@
                                center:(CGPoint) center
                                 color:(UIColor *) color;
 
-+(void) addOverlayRingSpinnerToView:(UIView *) view;
++(LLARingSpinnerBackgroundView *) addOverlayRingSpinnerToView:(UIView *) view;
 +(void) hideOverlayRingSpinnerFromView:(UIView *) view;
 
 + (BOOL) hideRingSpinnerForView:(UIView *) view;
@@ -53,5 +55,7 @@
 @end
 
 @interface LLARingSpinnerBackgroundView : UIView
+
+-(void)startAnimating;
 
 @end

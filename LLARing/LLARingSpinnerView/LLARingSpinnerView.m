@@ -139,7 +139,7 @@ static CGFloat const kSpinnerEndAngle = 4 * M_PI / 3;
     return nil;
 }
 
-+(void) addOverlayRingSpinnerToView:(UIView *) view {
++(LLARingSpinnerBackgroundView *) addOverlayRingSpinnerToView:(UIView *) view {
     LLARingSpinnerBackgroundView *background = [[LLARingSpinnerBackgroundView alloc] initWithFrame:CGRectMake(CGRectGetMidX(view.bounds) - kOverlaySpinnerBackgroundDefaultSize/2, CGRectGetMidY(view.bounds) - kOverlaySpinnerBackgroundDefaultSize/2, kOverlaySpinnerBackgroundDefaultSize, kOverlaySpinnerBackgroundDefaultSize)];
     background.opaque = NO;
     
@@ -147,6 +147,8 @@ static CGFloat const kSpinnerEndAngle = 4 * M_PI / 3;
                                         size:kOverlaySpinnerDefaultSize
                                        color:[UIColor grayColor]];
     [view addSubview:background];
+    
+    return background;
 }
 
 +(void)hideOverlayRingSpinnerFromView:(UIView *)view {
@@ -276,6 +278,13 @@ static CGFloat const kSpinnerEndAngle = 4 * M_PI / 3;
     CGContextFillPath(context);
     
     UIGraphicsPopContext();
+}
+
+-(void)startAnimating {
+    LLARingSpinnerView *spinner = [LLARingSpinnerView ringSpinnerForView:self];
+    if (spinner) {
+        [spinner startAnimating];
+    }
 }
 
 @end
